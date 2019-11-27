@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   storage-of-knowledge-fe:
-    image: storage-of-knowledge-fe:01
+    image: artyomsliusar/storage-of-knowledge-fe:01
     container_name: storage-of-knowledge-fe
     ports:
       - "80:80"
@@ -10,14 +10,14 @@ services:
       RECAPTCHA_PUBLIC_KEY:
     restart: unless-stopped
     volumes:
-      - ${PWD}/configs/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ${PWD}/nginx.conf:/etc/nginx/conf.d/nginx.conf
     depends_on:
       - storage-of-knowledge-be
     networks:
       - app-network
 
   storage-of-knowledge-be:
-    image: storage-of-knowledge-be:01
+    image: artyomsliusar/storage-of-knowledge-be:01
     container_name: storage-of-knowledge-be
     environment:
       DJANGO_ANYMAIL:
@@ -39,7 +39,7 @@ services:
       DJANGO_ENVIRONMENT:
       DJANGO_ELASTICSEARCH_HOST:
       DJANGO_ELASTICSEARCH_PORT:
-      DJANGO_LOGGING_CONFIG_FILE: "logging/logging.json"
+      DJANGO_LOGGING_CONFIG_FILE:
       DJANGO_RECAPTCHA_PRIVATE_KEY:
       DJANGO_RECAPTCHA_URL:
       DJANGO_SECRET_KEY:
@@ -48,7 +48,7 @@ services:
       DJANGO_USER_CONFIRMATION_LIFETIME_HOURS:
     restart: unless-stopped
     volumes:
-      - ${PWD}/configs/logging.json:/app/storageofknowledge/logging/logging.json
+      - ${PWD}/logging:/app/storageofknowledge/logging
     depends_on:
       - storage-of-knowledge-db
       - storage-of-knowledge-elastic
