@@ -78,6 +78,7 @@ services:
     restart: unless-stopped
     volumes:
       - ${PWD}/db_data:/var/lib/mysql
+      - ${PWD}/db_conf:/etc/mysql/conf.d
     networks:
       - app-network
 
