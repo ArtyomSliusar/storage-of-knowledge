@@ -5,12 +5,13 @@ services:
     container_name: storage-of-knowledge-fe
     ports:
       - "80:80"
+      - "443:443"
     environment:
       BASE_URL:
       RECAPTCHA_PUBLIC_KEY:
     restart: unless-stopped
     volumes:
-      - ${PWD}/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ${PWD}/nginx:/etc/nginx/conf.d
     depends_on:
       - storage-of-knowledge-be
     networks:
