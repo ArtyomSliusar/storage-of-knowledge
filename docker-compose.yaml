@@ -12,7 +12,7 @@ services:
     restart: unless-stopped
     volumes:
       - ${PWD}/nginx:/etc/nginx/conf.d
-      - /etc/letsencrypt/live/storageofknowledge.com:/etc/letsencrypt/live/storageofknowledge.com
+      - /etc/letsencrypt/live:/etc/letsencrypt/live
     depends_on:
       - storage-of-knowledge-be
     networks:
