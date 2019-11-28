@@ -9,12 +9,22 @@ services:
     environment:
       BASE_URL:
       RECAPTCHA_PUBLIC_KEY:
+      DOMAIN:
     restart: unless-stopped
     volumes:
       - ${PWD}/nginx:/etc/nginx/conf.d
-      - /etc/letsencrypt/live:/etc/letsencrypt/live
+      - /etc/letsencrypt/live/${DOMAIN}/fullchain.pem:/etc/letsencrypt/live/${DOMAIN}/fullchain.pem
+      - /etc/letsencrypt/live/${DOMAIN}/privkey.pem:/etc/letsencrypt/live/${DOMAIN}/privkey.pem
     depends_on:
       - storage-of-knowledge-be
+    command: >
+      /bin/sh -c
+      "/usr/share/nginx/html/env.sh
+      && envsubst '
+      $${DOMAIN}
+      '< /etc/nginx/conf.d/nginx.conf.template
+      > /etc/nginx/conf.d/nginx.conf
+      && nginx -g 'daemon off;'"
     networks:
       - app-network
 
