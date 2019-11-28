@@ -60,8 +60,9 @@ services:
     container_name: storage-of-knowledge-db
     environment:
       MYSQL_DATABASE: ${DJANGO_DATABASE_NAME}
-      MYSQL_ROOT_PASSWORD: ${DJANGO_DATABASE_PASSWORD}
-      MYSQL_ROOT_USER: ${DJANGO_DATABASE_USER}
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_PASSWORD: ${DJANGO_DATABASE_PASSWORD}
+      MYSQL_USER: ${DJANGO_DATABASE_USER}
     restart: unless-stopped
     volumes:
       - ${PWD}/db_data:/var/lib/mysql
