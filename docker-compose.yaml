@@ -73,6 +73,7 @@ services:
     container_name: storage-of-knowledge-elastic
     environment:
       discovery.type: "single-node"
+      "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     restart: unless-stopped
     volumes:
       - es_data:/usr/share/elasticsearch/data
