@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   storage-of-knowledge-fe:
-    image: artyomsliusar/storage-of-knowledge-fe:01
+    image: artyomsliusar/storage-of-knowledge-fe:0.1
     container_name: storage-of-knowledge-fe
     ports:
       - "80:80"
@@ -29,7 +29,7 @@ services:
       - app-network
 
   storage-of-knowledge-be:
-    image: artyomsliusar/storage-of-knowledge-be:01
+    image: artyomsliusar/storage-of-knowledge-be:0.1
     container_name: storage-of-knowledge-be
     environment:
       DJANGO_ANYMAIL:
